@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
         
     }
 
-    function RenderComments({comments}){
+    function RenderComments({comments, addComment, dishId}){
         
         if( comments != null){
             const commentsMenu = comments.map((comment) => {
@@ -34,7 +34,7 @@ import { Link } from 'react-router-dom';
             
             });
 
-        return <ul className = "list-unstyled">{commentsMenu}<CommentForm /></ul>;
+            return <ul className = "list-unstyled">{commentsMenu}<CommentForm dishId={dishId} addComment={addComment}/></ul>;
         }else{
             return(
                 <div></div>
@@ -68,7 +68,9 @@ import { Link } from 'react-router-dom';
                         </div>
                         <div className="col-12 col-md-5 mt-1">
                             <h4>Comments</h4>
-                            <RenderComments comments={props.comments}/>
+                            <RenderComments comments={props.comments}
+                             addComment={props.addComment}
+                             dishId={props.dish.id}/>
                         </div>
                     </div>
                 </div>  
@@ -103,8 +105,9 @@ class CommentForm extends Component{
     }
 
     handleSubmit(values){
-
-        alert('Current State is: ' + JSON.stringify(values));
+        this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.name, values.comment);
+       
     }
 
     render(){
