@@ -6,10 +6,13 @@ import { Loading } from './LoadingComponent';
 
     function RenderDish({dish}){
        
-       
+        console.log(dish.image);
+        var src = "https://aridaisantana.github.io/confusion/assets/images/" + dish.name.toLowerCase() + ".png";
+        
         return(
+            
             <Card>
-                <CardImg top src={dish.image} alt={dish.name} />
+                <CardImg top src={src} alt={dish.name} />
                 <CardBody>
                     <CardTitle>{dish.name}</CardTitle>
                     <CardText>{dish.description}</CardText>

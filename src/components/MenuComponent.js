@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 
     function RenderMenuItem({dish}){
+        console.log(dish.image);
         return(
             <Card>
                 <Link to={`/menu/${dish.id}`}>
